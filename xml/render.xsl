@@ -48,13 +48,46 @@
                 </xsl:for-each>
             </table>
 
-        <h1>Assignment - X Path</h1>
-            <p>Selecting Title of First Book : <xsl:value-of select="/books/book[1]/title"/></p>
-            <p>Selecting Price of First Book : <xsl:value-of select="/books/book[1]/price"/></p>
-            <p>Selecting Title of Second Book : <xsl:value-of select="/books/book[2]/title"/></p>
-            <p>Selecting Price of Second Book : <xsl:value-of select="/books/book[2]/price"/></p>
-            <p>Selecting All the child elements of Books </p>
-            <xsl:value-of select="/books/*"/>
+        <h2>Sorted Book List</h2>
+        
+        <table border="1">
+            <tr>
+            <th>Title</th>
+            <th>Author</th>
+            </tr>
+            <xsl:for-each select="books/book">
+            <xsl:sort select="title" order="ascending"/>
+                <tr>
+                    <td><xsl:value-of select="title"/></td>
+                    <td><xsl:value-of select="author"/></td>
+                </tr>
+            </xsl:for-each>
+        </table>
+
+        <h2>When </h2>
+        <table border="1">
+            <tr>
+            <th>Title</th>
+            <th>Author</th>
+            </tr>
+            <xsl:for-each select="books/book">
+            <xsl:choose>
+                <xsl:when test="price&gt;'500'">
+                    <tr>
+                        <td><xsl:value-of select="title"/></td>
+                        <td><xsl:value-of select="author"/></td>
+                        <td><xsl:value-of select="price"/></td>
+                    </tr>
+                </xsl:when>
+                <xsl:otherwise>
+                    <tr>
+                        <td><xsl:value-of select="title"/></td>
+                        <td><xsl:value-of select="author"/></td>
+                    </tr>
+                </xsl:otherwise>
+            </xsl:choose>
+            </xsl:for-each>
+        </table>
  	
         </body>
     </html>
